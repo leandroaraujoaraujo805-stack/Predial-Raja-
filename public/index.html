@@ -1,8 +1,104 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123b6d"><link rel="manifest" href="/manifest.json"><title>PREDIAL RAJA</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f9;color:#17202a}.hidden{display:none!important}button,input,select,textarea{font:inherit}button{border:0;border-radius:9px;padding:10px 14px;font-weight:700;cursor:pointer}.primary{background:#123b6d;color:#fff}.light{background:#e9eff6;color:#123b6d}.danger{background:#b42318;color:#fff}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#0e3158,#2d679e);padding:20px}.box{background:#fff;width:min(460px,100%);padding:28px;border-radius:18px;box-shadow:0 20px 50px #0004}.brand{font-size:28px;font-weight:800;color:#123b6d}.muted{color:#687687;font-size:13px}input,select,textarea{width:100%;padding:11px;border:1px solid #d7dee7;border-radius:9px;margin:5px 0 12px}textarea{min-height:96px}.top{height:68px;background:#123b6d;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px}.layout{display:flex;min-height:calc(100vh - 68px)}aside{width:230px;background:#fff;border-right:1px solid #dde3ea;padding:10px}.nav{width:100%;text-align:left;background:transparent;color:#425466;margin:3px 0}.nav.active,.nav:hover{background:#e9f0f7;color:#123b6d}main{width:100%;max-width:1200px;margin:auto;padding:20px}.page{display:none}.page.active{display:block}.card{background:#fff;border:1px solid #e1e6ed;border-radius:13px;padding:18px;margin-bottom:15px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}.num{font-size:28px;font-weight:800;color:#123b6d}.row,.post{padding:13px 0;border-bottom:1px solid #e5e9ef}.tag{display:inline-block;background:#e8f0f8;color:#123b6d;padding:4px 8px;border-radius:20px;font-size:12px}.chat{height:350px;overflow:auto;background:#f5f7fa;padding:12px;border-radius:10px}.bubble{max-width:76%;padding:10px 12px;border-radius:13px;margin:7px 0}.mine{margin-left:auto;background:#dcecff}.theirs{background:#fff;border:1px solid #ddd}.notice{background:#fff7e6;border:1px solid #efd08e;padding:11px;border-radius:9px;margin-bottom:14px}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:760px){aside{width:64px}.label{display:none}main{padding:12px}.split{grid-template-columns:1fr}.top small{display:none}}
+
+:root{
+  --navy:#123b6d;
+  --navy-2:#0d2e54;
+  --blue:#1f5f99;
+  --bg:#f3f6fa;
+  --card:#ffffff;
+  --text:#17202a;
+  --muted:#6b7787;
+  --line:#dfe6ee;
+  --good:#137a4b;
+  --warn:#a86400;
+  --danger:#b42318;
+  --shadow:0 8px 28px rgba(15,42,68,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.hidden{display:none!important}
+button,input,select,textarea{font:inherit}
+button{border:0;border-radius:10px;padding:11px 15px;font-weight:700;cursor:pointer;transition:.18s ease}
+button:hover{transform:translateY(-1px)}
+.primary{background:var(--navy);color:#fff}
+.primary:hover{background:var(--navy-2)}
+.light{background:#edf3f9;color:var(--navy)}
+.danger{background:var(--danger);color:#fff}
+
+.login{min-height:100vh;display:grid;place-items:center;background:
+ radial-gradient(circle at top right,rgba(255,255,255,.12),transparent 35%),
+ linear-gradient(145deg,var(--navy-2),#2f6da4);padding:22px}
+.box{background:#fff;width:min(470px,100%);padding:32px;border-radius:24px;box-shadow:0 24px 70px rgba(0,0,0,.28)}
+.brand{font-size:32px;font-weight:900;letter-spacing:.5px;color:var(--navy)}
+.muted{color:var(--muted);font-size:13px}
+label{font-weight:700;color:#34495e}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid #d5dee8;border-radius:10px;margin:6px 0 13px;background:#fff;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#7aa7cf;box-shadow:0 0 0 3px rgba(31,95,153,.10)}
+textarea{min-height:105px;resize:vertical}
+
+.top{min-height:72px;background:linear-gradient(90deg,var(--navy-2),var(--navy));color:#fff;display:flex;align-items:center;gap:14px;justify-content:space-between;padding:10px 18px;position:sticky;top:0;z-index:20;box-shadow:0 3px 14px rgba(0,0,0,.12)}
+.top>b{font-size:20px;letter-spacing:.4px}
+#userLabel{margin-left:auto;font-weight:700}
+.layout{display:flex;min-height:calc(100vh - 72px)}
+aside{width:220px;background:#fff;border-right:1px solid var(--line);padding:14px 10px;position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto}
+.nav{width:100%;text-align:left;background:transparent;color:#4a5a6a;margin:3px 0;padding:12px 13px;border-radius:11px}
+.nav.active,.nav:hover{background:#eaf2f9;color:var(--navy)}
+main{width:100%;max-width:1320px;margin:0 auto;padding:24px}
+.page{display:none}
+.page.active{display:block}
+
+.notice{background:linear-gradient(90deg,#fff7e6,#fffaf1);border:1px solid #ecd49b;padding:14px 16px;border-radius:13px;margin-bottom:16px;box-shadow:0 3px 10px rgba(0,0,0,.03)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:19px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{margin:0 0 14px;font-size:18px;color:#25384a}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;margin-bottom:16px}
+.cards .card{margin-bottom:0;position:relative;overflow:hidden}
+.cards .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#9fb7ce}
+.cards .card:nth-child(1):before{background:#d69e2e}
+.cards .card:nth-child(2):before{background:#2b6cb0}
+.cards .card:nth-child(3):before{background:#2f855a}
+.cards .card:nth-child(4):before{background:#805ad5}
+.num{font-size:30px;font-weight:900;color:var(--navy);margin-top:5px}
+.row,.post{padding:13px 0;border-bottom:1px solid #e8edf2}
+.row:last-child,.post:last-child{border-bottom:0}
+.tag{display:inline-block;background:#e8f0f8;color:var(--navy);padding:5px 9px;border-radius:999px;font-size:12px;font-weight:700}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chat{height:370px;overflow:auto;background:#f6f8fb;padding:13px;border:1px solid #e2e8ef;border-radius:12px}
+.bubble{max-width:78%;padding:10px 12px;border-radius:14px;margin:8px 0;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.mine{margin-left:auto;background:#dcecff}
+.theirs{background:#fff;border:1px solid #dce3ea}
+
+canvas{background:linear-gradient(180deg,#fff,#fbfdff);border-radius:10px}
+a{color:#155b95}
+
+#dashboard .notice{border-left:5px solid var(--navy)}
+#dashboardInsights .row{display:flex;align-items:flex-start;gap:8px}
+#dashboardInsights .row:before{content:"•";font-size:20px;color:var(--blue);line-height:14px}
+
+@media(max-width:900px){
+  aside{width:72px}
+  .label{display:none}
+  main{padding:16px}
+  .split{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .top{min-height:64px;padding:8px 10px}
+  .top>b{font-size:17px}
+  #userLabel{font-size:13px;max-width:140px}
+  .layout{display:block}
+  aside{position:sticky;top:64px;z-index:15;width:100%;height:auto;display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:7px;background:#fff}
+  .nav{min-width:54px;width:auto;margin:0 2px;text-align:center;padding:10px}
+  main{padding:12px}
+  .cards{grid-template-columns:1fr 1fr;gap:10px}
+  .card{padding:15px;border-radius:14px}
+  .num{font-size:26px}
+  .box{padding:25px 20px}
+}
+
 </style></head><body>
-<div id="loginView" class="login"><div class="box"><div class="brand">PREDIAL RAJA</div><p>Gestão e comunicação condominial</p><label>E-mail</label><input id="email" value="admin@predialraja.local"><label>Senha</label><input id="password" type="password" value="123456"><button class="primary" style="width:100%" onclick="doLogin()">Entrar</button><p class="muted">Primeiro acesso de demonstração: admin@predialraja.local / 123456</p><div id="loginError" class="muted"></div></div></div>
+<div id="loginView" class="login"><div class="box"><div class="brand">PREDIAL RAJA</div><p style="margin-top:8px">Gestão, comunicação e indicadores condominiais</p><label>E-mail</label><input id="email" value="admin@predialraja.local"><label>Senha</label><input id="password" type="password" value="123456"><button class="primary" style="width:100%" onclick="doLogin()">Entrar</button><p class="muted">Primeiro acesso de demonstração: admin@predialraja.local / 123456</p><div id="loginError" class="muted"></div></div></div>
 <div id="app" class="hidden"><header class="top"><b>🏢 PREDIAL RAJA</b><span id="userLabel"></span><button class="light" onclick="logout()">Sair</button></header><div class="layout"><aside>
 <button class="nav active" onclick="go('home',this)">🏠 <span class="label">Início</span></button>
 <button class="nav" onclick="go('dashboard',this)">📈 <span class="label">Dashboard</span></button>
@@ -17,7 +113,7 @@
 <section id="home" class="page active"><div class="notice">Condomínio selecionado: <b id="selected"></b></div><div class="cards"><div class="card">Moradores<div class="num" id="nResidents">0</div></div><div class="card">Funcionários<div class="num" id="nStaff">0</div></div><div class="card">Comunicados<div class="num" id="nPosts">0</div></div><div class="card">Solicitações<div class="num" id="nReq">0</div></div></div></section>
 
 <section id="dashboard" class="page">
-<div class="notice"><b>Dashboard executivo</b> — visão consolidada do condomínio selecionado.</div>
+<div class="notice"><b>Dashboard executivo</b><br><span class="muted">Indicadores financeiros, operacionais e evolução mensal do condomínio selecionado.</span></div>
 
 <div class="cards">
   <div class="card"><div class="muted">Inadimplência</div><div class="num" id="dDelinq">0%</div><div id="dDelinqTrend" class="muted">Sem histórico</div></div>
