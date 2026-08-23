@@ -14,10 +14,17 @@ const __dirname=path.dirname(__filename);
 const app=express();
 const PORT=process.env.PORT||3000;
 const SECRET=process.env.JWT_SECRET||'TROQUE-ESTA-CHAVE-EM-PRODUCAO';
-const db=new Database(path.join(__dirname,'server','data','predial_raja.db'));
-const uploadDir=path.join(__dirname,'server','data','uploads');
-fs.mkdirSync(uploadDir,{recursive:true});
-const upload=multer({dest:uploadDir,limits:{fileSize:15*1024*1024}});
+const dataDir = path.join(__dirname, 'server', 'data');
+const uploadDir = path.join(dataDir, 'uploads');
+
+fs.mkdirSync(dataDir, { recursive: true });
+fs.mkdirSync(uploadDir, { recursive: true });
+
+const db = new Database(path.join(dataDir, 'predial_raja.db'));
+const upload = multer({
+  dest: uploadDir,
+  limits: { fileSize: 15 * 1024 * 1024 }
+});
 
 app.use(express.json({limit:'2mb'}));
 app.use(express.static(path.join(__dirname,'public')));
